@@ -15,35 +15,46 @@ import com.ironman.memo.user.service.UserService;
 @RequestMapping("/user")
 @RestController // @Controller + @ResponseBody
 public class UserRestController {
-	
-	@Autowired
-	private UserService userService;
-	
-	@PostMapping("/join")
-	public Map<String, String> join(
-			@RequestParam("loginId") String loginId
-			, @RequestParam("password") String password
-			, @RequestParam("name") String name
-			, @RequestParam("email") String email) {
-		
-		User user = userService.addUser(loginId, password, name, email);
-		Map<String, String> resultMap = new HashMap<>();
-		
-		if(user != null) {
-			// 성공
-			resultMap.put("result", "success");
-		} else {
-			// 실패
-			resultMap.put("result", "fail");
-		}
-		return resultMap;
-	}
-	
-	@PostMapping("/login")
-	public Map<String, String> login(
-			@RequestParam("loginId") String loginId
-			, @RequestParam("password") String password) {
-		
-	}
-	
+    
+    @Autowired
+    private UserService userService;
+    
+    @PostMapping("/join")
+    public Map<String, String> join(
+            @RequestParam("loginId") String loginId
+            , @RequestParam("password") String password
+            , @RequestParam("name") String name
+            , @RequestParam("email") String email) {
+        
+        User user = userService.addUser(loginId, password, name, email);
+        Map<String, String> resultMap = new HashMap<>();
+        
+        if(user != null) {
+            // 성공
+            resultMap.put("result", "success");
+        } else {
+            // 실패
+            resultMap.put("result", "fail");
+        }
+        return resultMap;
+    }
+
+    @PostMapping("/login")
+    public Map<String, String> login(
+            @RequestParam("loginId") String loginId
+            , @RequestParam("password") String password) {
+        
+        User user = userService.getUser(loginId, password);
+        Map<String, String> resultMap = new HashMap<>();
+        if(user != null) {
+            resultMap.put("result", "success");
+            // 세션에 로그인 된 상태를 저장
+
+        } else {
+            resultMap.put("result", "fail");
+        }
+        return resultMap;
+    }
+    
+    
 }
