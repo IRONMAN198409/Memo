@@ -15,15 +15,16 @@
     
     <div id="wrap">
         <c:import url="/WEB-INF/jsp/include/header.jsp" />
-        <section class="contents d-flex justify-content-center">
+        <section class="contents d-flex justify-content-center align-items-center">
             <div class="join-box my-5 text-center">
                 <h1 class="text-center">로그인</h1>
                 <input type="text" placeholder="아이디" class="form-control mt-4" id="idInput">
                 <input type="password" placeholder="비밀번호" class="form-control mt-2" id="passwordInput">
-                <button type="button" class="btn btn-secondary btn-block mt-3" id="loginBtn">로그인</button>
+                <button type="button" class="btn btn-info btn-block mt-3" id="loginBtn">로그인</button>
                 <a href="/user/join-view" class="mt-4">회원가입</a>
             </div>
         </section>
+        <hr>
         <c:import url="/WEB-INF/jsp/include/footer.jsp" />
     
     </div>
